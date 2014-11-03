@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y wget
 
-RUN echo "deb http://packages.dotdeb.org wheezy-php56 all\ndeb-src http://packages.dotdeb.org wheezy-php5 all" >> /etc/apt/sources.list && \
+RUN echo "deb http://packages.dotdeb.org wheezy-php56 all\ndeb-src http://packages.dotdeb.org wheezy-php56 all" >> /etc/apt/sources.list && \
 	 wget -O- http://www.dotdeb.org/dotdeb.gpg | apt-key add - && \
 	 apt-get update
 
