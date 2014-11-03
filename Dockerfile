@@ -6,11 +6,11 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y wget
 
-RUN echo "deb http://packages.dotdeb.org wheezy-php56 all\ndeb-src http://packages.dotdeb.org wheezy-php56 all" >> /etc/apt/sources.list && \
+RUN echo "deb http://packages.dotdeb.org wheezy all\ndeb-src http://packages.dotdeb.org wheezy all\ndeb http://packages.dotdeb.org wheezy-php55 all\ndeb-src http://packages.dotdeb.org wheezy-php55 all" >> /etc/apt/sources.list && \
 	 wget -O- http://www.dotdeb.org/dotdeb.gpg | apt-key add - && \
 	 apt-get update
 
-RUN apt-get install --no-install-recommends -y \
+RUN apt-get install -y \
 	curl ca-certificates \
 	php5-fpm \
 	php5-cli \
@@ -18,7 +18,8 @@ RUN apt-get install --no-install-recommends -y \
 	php5-xdebug \
 	php5-json \
 	php5-memcached \
-	php5-mysql php5-pgsql \
+	php5-mysql \
+	php5-pgsql \
 	php5-mcrypt \
 	php5-gd \
 	php5-imap \
