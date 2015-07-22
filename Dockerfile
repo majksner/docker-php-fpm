@@ -1,12 +1,12 @@
-FROM centos:centos6
+FROM centos:centos7
 MAINTAINER Nikola Majksner <majksner@gmail.com>
 
-RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm \
-    http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm && \
+RUN rpm -Uvh http://rpms.remirepo.net/enterprise/remi-release-7.rpm \
+    https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && \
     yum --enablerepo=remi,remi-php56 install -y php-fpm php-common \
     php-pecl-amqp php-cli php-pear php-pdo php-pgsql php-pecl-xdebug  \
-    php-opcache php-pecl-amqp php-soap php-pecl-memcached php-gd \
-    php-mbstring php-mcrypt php-xml && \
+    php-opcache php-soap php-pecl-memcached php-gd \
+    php-mbstring php-xml && \
     yum clean all
 
 ADD ./php-fpm/app.conf /etc/php-fpm.d/app.conf
@@ -21,6 +21,6 @@ RUN sed -i -e "s/^post_max_size = 8M/post_max_size = 20M/g" /etc/php.ini && \
 
 EXPOSE 9000
 
-VOLUME ["/data"]
+VOLUME ["/var/www/html"]
 
 ENTRYPOINT ["php-fpm", "-F"]
