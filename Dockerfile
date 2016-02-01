@@ -21,7 +21,8 @@ RUN apt-get -y dist-upgrade && \
     sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.0/fpm/php.ini && \
     rm -Rf /etc/php/7.0/fpm/pool.d/www.conf && \
     mkdir -p /run/php && \
-    apt-get -y autoremove && apt-get clean
+    apt-get -y autoremove && apt-get clean && \
+    ln -sf /dev/stdout /var/log/php7.0-fpm.log
 
 ADD ./php-fpm/app.conf /etc/php/7.0/fpm/pool.d/app.conf
 
