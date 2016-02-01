@@ -27,6 +27,6 @@ ADD ./php-fpm/app.conf /etc/php/7.0/fpm/pool.d/app.conf
 
 EXPOSE 9000
 
-VOLUME ["/srv"]
+VOLUME ["/var/www/html"]
 
 CMD ["/usr/sbin/php-fpm7.0"]
