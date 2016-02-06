@@ -7,10 +7,10 @@ ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
 
 RUN apt-get -y dist-upgrade && \
-    apt-get -y install software-properties-common && \
+    apt-get -y install --no-install-recommends software-properties-common && \
     add-apt-repository -y ppa:ondrej/php-7.0 && \
     apt-get update && \
-    apt-get install -y php7.0-fpm php-curl \
+    apt-get install --no-install-recommends -y php7.0-fpm php-curl \
         php-pgsql php-xdebug php-memcached && \
     sed -i "s/date.timezone=.*/date.timezone=UTC/" /etc/php/7.0/fpm/php.ini && \
     sed -i "s/date.timezone=.*/date.timezone=UTC/" /etc/php/7.0/cli/php.ini && \
@@ -21,7 +21,9 @@ RUN apt-get -y dist-upgrade && \
     sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.0/fpm/php.ini && \
     rm -Rf /etc/php/7.0/fpm/pool.d/www.conf && \
     mkdir -p /run/php && \
+    apt-get -y remove software-properties-common && \
     apt-get -y autoremove && apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
     ln -sf /dev/stdout /var/log/php7.0-fpm.log
 
 ADD ./php-fpm/app.conf /etc/php/7.0/fpm/pool.d/app.conf
