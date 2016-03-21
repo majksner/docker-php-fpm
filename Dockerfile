@@ -6,11 +6,11 @@ RUN locale-gen en_US.UTF-8
 ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
 
-RUN apt-get -y dist-upgrade && \
-    apt-get -y install --no-install-recommends software-properties-common && \
-    add-apt-repository -y ppa:ondrej/php-7.0 && \
+RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main ' | sudo tee /etc/apt/sources.list.d/newrelic.list && \
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C && \
     apt-get update && \
-    apt-get install --no-install-recommends -y php7.0-fpm php-curl \
+    apt-get install --no-install-recommends -y php-fpm \
+        php-xml php-soap php-mbstring php-zip \
         php-pgsql php-xdebug php-memcached && \
     sed -i "s/date.timezone=.*/date.timezone=UTC/" /etc/php/7.0/fpm/php.ini && \
     sed -i "s/date.timezone=.*/date.timezone=UTC/" /etc/php/7.0/cli/php.ini && \
