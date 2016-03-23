@@ -5,6 +5,7 @@ MAINTAINER Nikola Majksner <majksner@gmail.com>
 RUN locale-gen en_US.UTF-8
 ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
+ENV COMPOSER_VERSION 1.0.0-beta1
 
 RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main ' | sudo tee /etc/apt/sources.list.d/newrelic.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C && \
@@ -19,6 +20,7 @@ RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main ' | sudo te
     sed -i "s/post_max_size = 2M/post_max_size = 20M/" /etc/php/7.0/fpm/php.ini && \
     sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.0/fpm/php-fpm.conf && \
     sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.0/fpm/php.ini && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} && \
     rm -Rf /etc/php/7.0/fpm/pool.d/www.conf && \
     mkdir -p /run/php && \
     apt-get -y remove software-properties-common && \
