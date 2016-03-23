@@ -11,8 +11,8 @@ RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main ' | sudo te
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C && \
     apt-get update && \
     apt-get install --no-install-recommends -y php-fpm \
-        php-xml php-soap php-mbstring php-zip \
-        php-pgsql php-xdebug php-memcached && \
+        php-xml php-curl php-json php-cgi php-soap php-mbstring \
+        php-zip php-pgsql php-xdebug php-memcached && \
     sed -i "s/date.timezone=.*/date.timezone=UTC/" /etc/php/7.0/fpm/php.ini && \
     sed -i "s/date.timezone=.*/date.timezone=UTC/" /etc/php/7.0/cli/php.ini && \
     sed -i "s/expose_php=.*/expose_php=Off/" /etc/php/7.0/fpm/php.ini && \
