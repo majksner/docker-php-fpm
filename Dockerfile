@@ -10,7 +10,7 @@ ENV COMPOSER_VERSION 1.0.0-beta1
 RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main ' | sudo tee /etc/apt/sources.list.d/newrelic.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C && \
     apt-get update && \
-    apt-get install --no-install-recommends -y php-fpm \
+    apt-get install -y ca-certificates php-fpm \
         php-xml php-curl php-json php-cgi php-soap php-mbstring \
         php-zip php-pgsql php-xdebug php-memcached && \
     sed -i "s/date.timezone=.*/date.timezone=UTC/" /etc/php/7.0/fpm/php.ini && \
