@@ -6,6 +6,7 @@ RUN locale-gen en_US.UTF-8
 ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
 ENV COMPOSER_VERSION 1.0.0-beta1
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' | sudo tee /etc/apt/sources.list.d/ondrej.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C && \
@@ -31,6 +32,6 @@ RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' | sudo tee
 
 ADD ./php-fpm/app.conf /etc/php/7.0/fpm/pool.d/app.conf
 EXPOSE 9000
-USER www-data
+#USER www-data
 WORKDIR /var/www/html
 CMD ["/usr/sbin/php-fpm7.0"]
