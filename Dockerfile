@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:trusty
 
 MAINTAINER Nikola Majksner <majksner@gmail.com>
 
@@ -7,12 +7,12 @@ ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
 ENV COMPOSER_VERSION 1.0.0-beta1
 
-RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main ' | sudo tee /etc/apt/sources.list.d/newrelic.list && \
+RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' | sudo tee /etc/apt/sources.list.d/ondrej.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C && \
     apt-get update && \
-    apt-get install -y ca-certificates libxrender1 libxext6 php-fpm \
-        php-xml php-curl php-json php-cgi php-soap php-mbstring \
-        php-zip php-pgsql php-xdebug php-memcached && \
+    apt-get install -y ca-certificates libxrender1 libxext6 php7.0-fpm \
+        php7.0-xml php7.0-curl php7.0-json php7.0-cgi php7.0-soap php7.0-mbstring \
+        php7.0-zip php7.0-pgsql php-xdebug php-memcached && \
     sed -i "s/date.timezone=.*/date.timezone=UTC/" /etc/php/7.0/fpm/php.ini && \
     sed -i "s/date.timezone=.*/date.timezone=UTC/" /etc/php/7.0/cli/php.ini && \
     sed -i "s/expose_php=.*/expose_php=Off/" /etc/php/7.0/fpm/php.ini && \
