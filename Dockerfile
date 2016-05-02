@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:xenial
 
 MAINTAINER Nikola Majksner <majksner@gmail.com>
 
@@ -8,7 +8,7 @@ ENV LC_ALL     en_US.UTF-8
 ENV COMPOSER_VERSION 1.0.0-beta1
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu trusty main' | sudo tee /etc/apt/sources.list.d/ondrej.list && \
+RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main' | tee /etc/apt/sources.list.d/ondrej.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C && \
     apt-get update && \
     apt-get install -y ca-certificates libxrender1 libxext6 php7.0-fpm \
