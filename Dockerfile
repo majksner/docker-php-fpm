@@ -11,7 +11,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main' | tee /etc/apt/sources.list.d/ondrej.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C && \
     apt-get update && \
-    apt-get install -y ca-certificates libxrender1 libxext6 php7.0-fpm \
+    apt-get install -y ca-certificates curl libxrender1 libxext6 php7.0-fpm \
         php7.0-xml php7.0-curl php7.0-json php7.0-cgi php7.0-soap php7.0-mbstring \
         php7.0-zip php7.0-pgsql php-xdebug php-memcached && \
     sed -i "s/date.timezone=.*/date.timezone=UTC/" /etc/php/7.0/fpm/php.ini && \
