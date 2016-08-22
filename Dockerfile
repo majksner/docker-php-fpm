@@ -5,7 +5,7 @@ MAINTAINER Nikola Majksner <majksner@gmail.com>
 RUN locale-gen en_US.UTF-8
 ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
-ENV COMPOSER_VERSION 1.0.0-beta1
+ENV COMPOSER_VERSION 1.2.0
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main' | tee /etc/apt/sources.list.d/ondrej.list && \

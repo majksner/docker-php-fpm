@@ -1,6 +1,6 @@
 # PHP-FPM image for Docker
 
-PHP Version: 7.0.8
+PHP Version: 7.0.10
 
 Running container:
 
